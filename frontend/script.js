@@ -11,7 +11,9 @@ function handleLogin() {
   const email = document.getElementById("loginEmail").value.trim();
   const password = document.getElementById("loginPassword").value.trim();
 
-  fetch('http://localhost:3000/login', {
+ 
+  fetch('https://acced-certificate-system.onrender.com/login', {
+
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password })
@@ -54,7 +56,7 @@ function saveCertificate() {
 
   console.log("Sending certificate data:", data);
 
-  fetch('http://localhost:3000/submit', {
+  fetch('https://acced-certificate-system.onrender.com/submit', {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -103,7 +105,7 @@ function verifyCertificate() {
 
   console.log("Verifying certificate for:", enroll);
 
-  fetch('http://localhost:3000/verify', {
+  fetch('https://acced-certificate-system.onrender.com/verify', {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ enroll })
