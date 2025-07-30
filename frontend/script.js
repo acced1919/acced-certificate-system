@@ -11,9 +11,7 @@ function handleLogin() {
   const email = document.getElementById("loginEmail").value.trim();
   const password = document.getElementById("loginPassword").value.trim();
 
- 
-  fetch('https://acced-certificate-system.onrender.com/login', {
-
+  fetch('https://acced-certificate-system.onrender.com//login', {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password })
