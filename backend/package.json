@@ -7,11 +7,18 @@
     "start": "node backend.js"
   },
   "dependencies": {
+<<<<<<< HEAD
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "node-fetch": "^2.7.0"
+=======
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
     "dotenv": "^17.2.0",
     "express": "^5.1.0",
     "googleapis": "^154.0.0",
     "jsonwebtoken": "^9.0.2"
+>>>>>>> 80acb7f93a92652e734a9c76275018c04f183ba2
   }
 }

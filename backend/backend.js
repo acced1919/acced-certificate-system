@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const fetch = require('node-fetch'); // npm install node-fetch
+=======
 require('dotenv').config(); // 🔒 .env file ka use
 
 const express = require('express');
@@ -6,11 +12,53 @@ const fs = require('fs');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+>>>>>>> 80acb7f93a92652e734a9c76275018c04f183ba2
 
 const app = express();
 const PORT = 3000;
 
 app.use(cors());
+<<<<<<< HEAD
+app.use(bodyParser.json());
+
+app.post('/submit', async (req, res) => {
+  const data = req.body;
+  console.log("📥 Received data from frontend:", data); 
+
+  if (!data.enroll || !data.name) {
+    return res.json({ result: { success: false, message: 'Missing data' } });
+  }
+
+  try {
+   const response = await fetch('https://script.google.com/macros/s/AKfycbxsHWhI4A1yT1vi5GQCB3HRUetUgeLPS2cr8JfmNjObNiDbfyPMzxjNskd4SN75cY7J/exec', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(data)
+});
+
+
+    const result = await response.json();
+    console.log("📥 Google Sheet Response:", result);
+
+    if (result.success) {
+    console.log("📤 Sending data to Google Script:", data);
+
+      res.json({ result: { success: true } });
+    } else {
+      console.error("❌ Google Sheet returned failure:", result);
+      res.json({ result: { success: false, message: 'Google Sheet error' } });
+    }
+
+  } catch (err) {
+    console.error("❌ Error sending to Google Sheet:", err);
+    res.json({ result: { success: false, message: 'Server Error' } });
+  }
+});
+
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
+});
+=======
 app.use(express.json());
 
 // 🔐 Admin credentials
@@ -129,3 +177,8 @@ app.listen(PORT, () => {
   console.log(`✅ Server started on http://localhost:${PORT}`);
 });
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 80acb7f93a92652e734a9c76275018c04f183ba2
+>>>>>>> 4b60bf16156a247636c6d10eb34d9ecb4e81eb21
