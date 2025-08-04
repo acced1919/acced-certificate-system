@@ -1,4 +1,11 @@
+
 {
+  "name": "acced-backend",
+  "version": "1.0.0",
+  "main": "backend.js",
+  "scripts": {
+    "start": "node backend.js"
+  },
   "dependencies": {
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",

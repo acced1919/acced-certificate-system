@@ -14,8 +14,8 @@ app.use(cors());
 app.use(express.json());
 
 // 🔐 Admin credentials
-const ADMIN_EMAIL = "tabassumbaby453@gmail.com";
-const ADMIN_PASSWORD="$2b$10$pmEoTv8DGcUyXcWW.Basj.F86l4DuA2OORho6XV4tV.1wsCPTZ8pe";
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
+const ADMIN_PASSWORD=process.env.ADMIN_PASSWORD;
 
 const JWT_SECRET = process.env.JWT_SECRET;
 const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
@@ -83,7 +83,7 @@ app.post('/verify', async (req, res) => {
   try {
     const { enroll } = req.body;
 
-    const credentials = JSON.parse(fs.readFileSync('credentials.json'));
+    const credentials = JSON.parse(fs.readFileSync('/etc/secrets/credentials.json'));
     const auth = new google.auth.GoogleAuth({
       credentials,
       scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
@@ -124,10 +124,8 @@ app.post('/verify', async (req, res) => {
     res.status(500).json({ success: false, message: "Server error during verification" });
   }
 });
-
-// 🟢 Server Start
+// ✅ Server Start Code — ye last me hona chahiye
 app.listen(PORT, () => {
-  console.log(`✅ Server running on http://localhost:${PORT}`);
+  console.log(`✅ Server started on http://localhost:${PORT}`);
 });
-
 
