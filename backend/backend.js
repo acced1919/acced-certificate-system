@@ -2,17 +2,17 @@ require('dotenv').config();
 
 const express = require('express');
 const { google } = require('googleapis');
-const fs = require('fs');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-
 const app = express();
-const PORT = 3000;
+
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
 
+// 🔐 ENV variables
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -33,7 +33,7 @@ app.post('/login', (req, res) => {
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
-  if (!token) return res.status(401).json({ success: false, message: 'No token' });
+  if (!token) return res.status(401).json({ success: false, message: 'No token provided' });
 
   jwt.verify(token, JWT_SECRET, (err, user) => {
     if (err) return res.status(403).json({ success: false, message: 'Invalid token' });
@@ -42,10 +42,10 @@ function authenticateToken(req, res, next) {
   });
 }
 
-// ✅ Save Certificate
+// ✅ Certificate Submission
 app.post('/submit', authenticateToken, async (req, res) => {
   try {
-    const credentials = JSON.parse(fs.readFileSync('credentials.json'));
+    const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
     const auth = new google.auth.GoogleAuth({
       credentials,
       scopes: ['https://www.googleapis.com/auth/spreadsheets'],
@@ -73,11 +73,11 @@ app.post('/submit', authenticateToken, async (req, res) => {
   }
 });
 
-// 🔍 Verify Certificate
+// ✅ Certificate Verification
 app.post('/verify', async (req, res) => {
   try {
     const { enroll } = req.body;
-    const credentials = JSON.parse(fs.readFileSync('credentials.json'));
+    const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
     const auth = new google.auth.GoogleAuth({
       credentials,
       scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
@@ -117,6 +117,7 @@ app.post('/verify', async (req, res) => {
   }
 });
 
+// ✅ Start Server
 app.listen(PORT, () => {
-  console.log(`✅ Server started on http://localhost:${PORT}`);
+  console.log(`🚀 Server is running on http://localhost:${PORT}`);
 });

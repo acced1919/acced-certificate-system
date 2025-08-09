@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ahmadiyya Computer Centre</title>
+  <style>
+     
+  
+    * { margin: 0; padding: 0; box-sizing: border-box; transition: all 0.3s ease; }
+    body { font-family: 'Segoe UI', sans-serif; background-color: #f3f4f6; color: #111827; }
+
+ header { background: linear-gradient(90deg, #1d4ed8, #1e40af); 
+  color: white; 
+  padding: 1.5rem 2rem; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    .container { 
+      width:100%;
+      padding: 10px;
+      max-width: 1280px; margin: auto; display: flex; justify-content: space-between; align-items: center;flex-wrap: wrap;  }
+    .logo { font-size: 1.75rem; font-weight: bold; }
+    nav ul { list-style: none; display: flex; gap: 28px; flex-wrap: wrap;}
+    /* 👇 अब आखिर में media query डालो */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column; /* मोबाइल में ऊपर-नीचे */
+    gap: 10px; /* कम जगह */
+    align-items: flex-start; /* बायीं तरफ */
+  }
+}
+
+nav ul li { cursor: pointer; position: relative; font-size: 1.1rem; }
+    nav ul li.active::after { content: ""; position: absolute; bottom: -2px; left: 0; width: 100%; height: 3px; background-color: #facc15; }
+    .login-btn { background-color: #facc15; color: #1e3a8a; padding: 0.6rem 1.2rem; border-radius: 8px; font-weight: 600; cursor: pointer; }
+    main { padding: 3rem 2rem; }
+    section { margin-bottom: 4rem; text-align: center; }
+    h2 { font-size: 2.5rem; margin-bottom: 1.5rem; color: #1d4ed8; }
+    ul.courses, ul.objectives { max-width: 800px; margin: auto; text-align: left; list-style: none; }
+    ul.courses li, ul.objectives li { font-weight: bold; font-style: italic; font-size: 1.2rem; padding: 1rem 1.5rem; margin-bottom: 1rem; border-radius: 10px; background-color: #ffffff; box-shadow: 0 2px 6px rgba(0,0,0,0.08); transition: 0.3s; }
+    ul.courses li:hover { background-color: #1e40af; color: white; transform: scale(1.03); box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3); }
+    .cert-form, .login-form { max-width: 500px; margin: auto; background-color: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.12); }
+    input, textarea, button { width: 100%; padding: 0.8rem; margin-top: 0.5rem; border-radius: 8px; font-size: 1rem; border: 1px solid #ccc; }
+    button { background-color: #1d4ed8; color: white; font-weight: bold; border: none; margin-top: 1.5rem; cursor: pointer; }
+    .result { margin-top: 1.5rem; padding: 1rem; border-radius: 8px; font-size: 1rem; }
+    .success { background-color: #dcfce7; color: #166534; }
+    .error { background-color: #fee2e2; color: #991b1b; }
+    footer { background-color: #1e3a8a; color: white; text-align: center; padding: 1.5rem; }
+    iframe { width: 100%; height: 350px; border: none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-top: 1rem; }
+ </style>
+ <script src="frontend/script.js"></script>
+
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">💻 Ahmadiyya Computer Centre</div>
+      <nav>
+        <ul>
+          <li onclick="showSection('home')" class="active">HOME</li>
+          <li onclick="showSection('courses')">COURSES</li>
+          <li onclick="showSection('objectives')">OBJECTIVES</li>
+          <li onclick="showSection('certificateCheck')">CERTIFICATE CHECK</li>
+          <li onclick="showSection('contact')">CONTACT US</li>
+          <li onclick="showSection('login')"><span class="login-btn">LOGIN</span></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section id="home">
+   <!-- हेडिंग और टाइटल -->
+<h2 style="text-align: center; font-size: 2rem; color: #1d4ed8;">Welcome to Ahmadiyya Computer Centre</h2>
+<p style="text-align: center; font-size: 1.5rem; font-weight: bold; font-style: italic; color: #1d4ed8; margin-bottom: 20px;">
+  Computer Education
+</p>
+
+<!-- इमेज गैलरी -->
+<div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 0 auto; max-width: 1200px;">
+  
+  <!-- पहला बॉक्स -->
+  <div style="text-align: center; border: 2px solid #1d4ed8; padding: 10px; border-radius: 10px;">
+    <img src="images/qwen.jpg"  
+         style="width: 300px; height: 200px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+    <div style="margin-top: 8px; font-weight: bold;"></div>
+  </div>
+
+  <!-- दूसरा बॉक्स -->
+  <div style="text-align: center; border: 2px solid #1d4ed8; padding: 10px; border-radius: 10px;">
+    <img src="images/moti.jpg" 
+         style="width: 300px; height: 200px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+    <div style="margin-top: 8px; font-weight: bold;"></div>
+  </div>
+
+  <!-- तीसरा बॉक्स -->
+  <div style="text-align: center; border: 2px solid #1d4ed8; padding: 10px; border-radius: 10px;">
+    <img src="images/raj.jpg" 
+         style="width: 300px; height: 200px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+    <div style="margin-top: 8px; font-weight: bold;"></div>
+  </div>
+  <section id="about" style="position: relative; padding: 60px 20px; background: linear-gradient(135deg, #e0ecff, #ffffff); overflow: hidden;">
+  <!-- Subtle Background Pattern -->
+  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.07; background-image: url('https://www.toptal.com/designers/subtlepatterns/patterns/double-bubble-outline.png'); background-repeat: repeat;"></div>
+
+  <div style="max-width: 1100px; margin: auto; position: relative; z-index: 2; text-align: center; animation: fadeInUp 1.2s ease-out;">
+    <h2 style="font-size: 36px; color: #1d4ed8; margin-bottom: 10px;">About Us</h2>
+    <h3 style="font-size: 24px; color: #0f172a; margin-bottom: 5px;">Ahmadiyya Center for Computer Education (ACCEd)</h3>
+    <p style="font-size: 18px; font-weight: bold; color: #1d4ed8; margin-bottom: 30px;">
+      (An ISO Affiliated Centre &  Approved Computer Courses Provider)
+      </p>
+     <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center; justify-content: center;">
+      <!-- Image Box -->
+      <div style="flex: 1; min-width: 300px;">
+        <img src="https://cdn.pixabay.com/photo/2015/01/08/18/24/computer-593312_960_720.jpg" alt="Computer Education" style="width: 100%; max-width: 400px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
+      </div>
+
+      <!-- Text Content -->
+      <div style="flex: 2; min-width: 300px; text-align: left; color: #374151; font-size: 17px; line-height: 1.8;">
+        <p><strong>Ahmadiyya Center for Computer Education (ACCED.)</strong> Was started in october 2001 by the kind approval of Hadhrat Mirza Tahir Ahmad Khalifatul Massih IVth under the management of Majlis Khuddamul Ahmadiyya Bharat(An auxiliary organisation of Ahmadiyya Youth.)</p>
+        <p>
+          Ahmadiyya Center for Computer Education (ACCEd) is a recognized and ISO-affiliated training institute located in Qadian. We are committed to delivering high-quality, certified computer courses to empower students from all backgrounds.
+        </p>
+        <p>
+          We offer job-oriented training programs for students ranging from 5th grade to post graduate level. Our goal is to provide practical digital skills that open doors to better career opportunities both in India and abroad.
+        </p>
+        <ul style="padding-left: 1rem; margin-top: 1rem;">
+          <li style="margin-bottom: 10px;">💡 <strong>ISO Certified & Approved</strong> courses</li>
+          <li style="margin-bottom: 10px;">🖥️ Modern labs with hands-on training</li>
+          <li style="margin-bottom: 10px;">👨‍🏫 Experienced & skilled faculty</li>
+          <li style="margin-bottom: 10px;">🎯 Job-ready skills for real-world use</li>
+        </ul>
+        <p style="margin-top: 20px; font-weight: bold; color: #1e3a8a;">
+          📞 For Admissions & Inquiries: 01872-222900, 9988790588, 9878340588
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Animation CSS -->
+  <style>
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media(max-width: 768px) {
+      #about div[style*="display: flex"] {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</section>
+
+
+</div>
+
+  </section>
+
+ <section id="courses" style="display:none">
+      <h2>Our Courses</h2>
+      <ul class="courses">
+        <li>📘 Computer Basic</li>
+        <li>📘 Accounting in Tally</li>
+        <li>📘 Corel Draw</li>
+        <li>📘 Photoshop</li>
+        <li>📘 Audio Video Editing</li>
+        <li>📘 Punjabi Typing</li>
+        <li>📘 Inpage Urdu</li>
+        <li>📘 Dekstop Publishing</li>
+        <li>📘 Computer Hardware</li>
+        <li>📘 Visual Basic Programming</li>
+        <li>📘 HTML CSS JavaScript</li>
+        <li>📘 C Programming</li>
+        <li>📘 C++ Programming</li>
+        <li>📘 Python Programming</li>
+        <li>📘 Oracle(SQL/PLSQL)</li>
+        <li>📘 Certificate in Computer Application (CCA)</li>
+        <li>📘 Diploma in Computer Application (DCA)</li>
+        <li>📘 Diploma in Office Management (DOM)</li>
+        <li>📘 Diploma in Computer Hardware & Networking</li>
+        <li>📘 Diploma in Finance Accounting Tally & Busy (DFA)</li>
+        <li>📘 MS OFFICE - WORD, EXCEL, POWERPOINT, ACCESS, ETC.</li>
+      </ul>
+    </section>
+
+    <section id="objectives" style="display:none">
+      <h2>Our Objectives</h2>
+      <ul class="objectives">
+        <li>✅ To provide quality computer education to students of all ages.</li>
+        <li>✅ To bridge the digital divide in underserved communities.</li>
+        <li>✅ To offer certified courses recognized by industry standards.</li>
+        <li>✅ To empower individuals with technological skills for better opportunities.</li>
+        <li>✅ To create a learning environment that fosters innovation and creativity.</li>
+        <li>✅ To cultivate a mindset of lifelong learning and adaptability.</li>
+        <li>✅ To ensure equal access to computer education for all backgrounds.</li>
+        <li>✅ To build a bridge between technology and society through meaningful training.</li>
+        <li>✅ To promote digital literacy in rural and underserved communities.</li>
+        <li>✅ To prepare students for global opportunities by enhancing their digital competence and soft skills.</li>
+       </ul>
+      </section>
+
+    <section id="certificateCheck" style="display:none">
+      <h2>Certificate Verification</h2>
+      <div class="cert-form">
+        <input type="text" id="certId" placeholder="Enter Enrollment Number"autocomplete="off"/>
+        <button onclick="verifyCertificate()">Verify</button>
+        <div id="certResult"></div>
+      </div>
+    </section>
+
+    <section id="certificateEntry" style="display:none">
+      <h2>Certificate Entry</h2>
+      <div class="cert-form">
+      
+        <input type="text" id="enroll" placeholder="Enrollment No."autocomplete="off" />
+        <input type="text" id="issued" placeholder="Issued Date"autocomplete="off" />
+        <input type="text" id="name" placeholder="Student Name"autocomplete="off" />
+        <input type="text" id="fatherName" placeholder="Father Name"autocomplete="off" />
+        <input type="text" id="course" placeholder="Course"autocomplete="off" />
+        <input type="text" id="joining" placeholder="Joining Date"autocomplete="off" />
+        <input type="text" id="grade" placeholder="Grade"autocomplete="off" />
+        <textarea rows="4" id="address" placeholder="Address"autocomplete="off"></textarea>
+        
+        <button onclick="saveCertificate()">Save Certificate</button>
+      </div>
+    </section>
+
+    <section id="contact" style="display:none">
+      <h2>Contact Us</h2>
+      <p><strong>Address:</strong> Aiwan-e-Khidmat Near Bahishti Maqbara Mohalla Ahmadiyya Qadian</p>
+      <p><strong>District:</strong> Gurdaspur</p>
+      <p><strong>State:</strong> Punjab</p>
+      <p><strong>Country:</strong> India</p>
+      <p><strong>Pincode:</strong> 143516</p>
+      <p><strong>Phone:</strong> 01872-222900, 9988790588, 9878340588</p>
+      <p><strong>Email:</strong> tabassumbaby453@gmail.com</p>
+      <iframe src="https://maps.google.com/maps?q=Aiwan-e-Khidmat%20Near%20Bahishti%20Maqbara%20Mohalla%20Ahmadiyya%20Qadian%2C%20Gurdaspur%2C%20Punjab%2C%20India&output=embed"></iframe>
+    </section>
+
+    <section id="login" style="display:none">
+      <h2>Login</h2>
+      <div class="login-form">
+       <input type="text" id="loginEmail" name="fakeuser" placeholder="Email" autocomplete="off" inputmode="none" required>
+<input type="password" id="loginPassword" name="fakepassword" placeholder="Password" inputmode="none" spellcheck="false" required>
+
+        <button onclick="handleLogin()">Login</button>
+        <div id="loginResult"></div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    &copy; 2025 Ahmadiyya Computer Centre. All rights reserved.
+  </footer>
+ 
